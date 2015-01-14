@@ -1,4 +1,4 @@
-FROM ubuntu:12.04
+FROM ubuntu-upstart:12.04
 
 EXPOSE 9981
 
