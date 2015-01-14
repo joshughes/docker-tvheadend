@@ -9,7 +9,8 @@ RUN apt-get update && apt-get install -y \
     libavahi-client3 \
     libavahi-common3 \
     liburiparser1 \
-    curl
+    curl \
+    software-properties-common
 
 RUN curl http://apt.tvheadend.org/repo.gpg.key | apt-key add -
 
