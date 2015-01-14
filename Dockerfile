@@ -8,14 +8,13 @@ RUN apt-get update && apt-get install -y \
     python-software-properties \
     libavahi-client3 \
     libavahi-common3 \
-    liburiparser1
+    liburiparser1 \
+    curl
 
-COPY package/tvheadend.deb /tmp/tvheadend.deb
+RUN curl http://apt.tvheadend.org/repo.gpg.key | apt-key add -
 
-RUN add-apt-repository ppa:tfylliv/dvbhdhomerun 
+RUN add-apt-repository ppa:tfylliv/dvbhdhomerun && apt-add-repository http://apt.tvheadend.org/unstable
 
-RUN apt-get update && apt-get install -y dvbhdhomerun-dkms dvbhdhomerun-utils
+RUN apt-get update && apt-get install -y dvbhdhomerun-dkms dvbhdhomerun-utils tvheadend
 
-RUN DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/tvheadend.deb && rm /tmp/tvheadend.deb
-
-CMD ["/usr/bin/tvheadend"]
+CMD ["/usr/bin/tvheadend","-C"]
