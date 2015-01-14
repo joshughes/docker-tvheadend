@@ -15,6 +15,9 @@ RUN curl http://apt.tvheadend.org/repo.gpg.key | apt-key add -
 
 RUN add-apt-repository ppa:tfylliv/dvbhdhomerun && apt-add-repository http://apt.tvheadend.org/unstable
 
+RUN dpkg-divert --local --rename --add /sbin/initctl && \
+    ln -s /bin/true /sbin/initctl
+
 RUN apt-get update && apt-get install -y dvbhdhomerun-dkms dvbhdhomerun-utils tvheadend
 
 CMD ["/usr/bin/tvheadend","-C"]
