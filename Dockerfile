@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN curl http://apt.tvheadend.org/repo.gpg.key | apt-key add -
 
-RUN add-apt-repository ppa:r3gis-r3gis/dvbhdhomerun && apt-add-repository http://apt.tvheadend.org/unstable
+RUN apt-add-repository ppa:r3gis-r3gis/dvbhdhomerun && apt-add-repository http://apt.tvheadend.org/unstable
 
 RUN dpkg-divert --local --rename --add /sbin/initctl && \
     ln -s /bin/true /sbin/initctl
